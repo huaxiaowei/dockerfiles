@@ -1,28 +1,39 @@
 version: '2'
 
 services:
-  elasticsearch-xpack5:
-    build: ./elasticsearch-xpack5
-    ports: 
-      - "9200:9200"
+  elk-elasticsearch:
+    build: ./elasticsearch
     environment:
       ES_JAVA_OPTS: '-Xms1024m -Xmx1024m'
     restart: always
-  fluentd-es:
-    build: ./fluentd-es
+    hostname: elasticsearch
+    networks:
+      - elk
+  elk-fluentd:
+    build: ./fluentd
     depends_on: 
-      - elasticsearch-xpack5
+      - elasticsearch
     ports:
       - "24224:24224"
     restart: always
-  kibana-xpack5:
+    hostname: fluentd
+    networks:
+      - elk
+  elk-kibana:
     build: ./kibana-xpack5
     depends_on:
-      - elasticsearch-xpack5
-      - fluentd-es
+      - elasticsearch
+      - fluentd
     ports:
       - "5602:5601"
     environment:
-      ELASTICSEARCH_URL: 'http://172.16.1.12:9200'
+      ELASTICSEARCH_URL: 'http://elasticsearch:9200'
       XPACK_MONITORING_ENABLED: 'false'
     restart: always
+    hostname: kibana
+    networks:
+      - elk
+
+networks:
+  elk:
+    external: true
