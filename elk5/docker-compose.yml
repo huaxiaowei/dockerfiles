@@ -2,23 +2,24 @@ version: '2'
 
 services:
   elk-elasticsearch:
-    build: ./elasticsearch
+    container_name: elk-elasticsearch
+    image: elasticsearch:5.1.1
     environment:
       ES_JAVA_OPTS: '-Xms1024m -Xmx1024m'
     restart: always
-    networks:
-      - elk
+
   elk-fluentd:
+    container_name: elk-fluentd
     build: ./fluentd
     depends_on: 
       - elk-elasticsearch
     ports:
       - "24224:24224"
     restart: always
-    networks:
-      - elk
+
   elk-kibana:
-    build: ./kibana
+    container_name: elk-kibana
+    image: kibana:5.1.1
     depends_on:
       - elk-elasticsearch
       - elk-fluentd
@@ -28,9 +29,3 @@ services:
       ELASTICSEARCH_URL: 'http://elk-elasticsearch:9200'
       XPACK_MONITORING_ENABLED: 'false'
     restart: always
-    networks:
-      - elk
-
-networks:
-  elk:
-    external: true
