@@ -1,0 +1,61 @@
+version: '2'
+
+services:
+ es-indices-master:
+   container_name: es-indices-master
+   image: registry-internal.cn-hangzhou.aliyuncs.com/nakedgroup/elasticsearch-indices:1
+   entrypoint:
+       - /docker-entrypoint.sh
+   command:
+       - elasticsearch
+       - -Des.cluster.name=escluster
+       - -Des.node.master=true
+       - -Des.node.data=false
+       - -Des.path.repo=/backup
+   environment:
+       ES_JAVA_OPTS: "-Xms1024m -Xmx1024m"
+   volumes:
+       - es-databackup:/backup:rw
+   ports:
+       - "9201:9200"
+
+ es-indices-data1:
+   container_name: es-indices-data1
+   image: registry-internal.cn-hangzhou.aliyuncs.com/nakedgroup/elasticsearch-indices:1
+   entrypoint:
+       - /docker-entrypoint.sh
+   command:
+       - elasticsearch
+       - -Des.cluster.name=escluster
+       - -Des.node.ingest=false
+       - -Des.node.master=false
+       - -Des.path.repo=/backup
+       - -Des.discovery.zen.ping.unicast.hosts=es-master
+   environment:
+       ES_JAVA_OPTS: "-Xms1024m -Xmx1024m"
+   volumes:
+       - es-databackup:/backup:rw
+   links:
+       - "es-indices-master:es-master"
+
+ es-indices-data2:
+   container_name: es-indices-data2
+   image: registry-internal.cn-hangzhou.aliyuncs.com/nakedgroup/elasticsearch-indices:1
+   entrypoint:
+       - /docker-entrypoint.sh
+   command:
+       - elasticsearch
+       - -Des.cluster.name=escluster
+       - -Des.node.ingest=false
+       - -Des.node.master=false
+       - -Des.path.repo=/backup
+       - -Des.discovery.zen.ping.unicast.hosts=es-master
+   environment:
+       ES_JAVA_OPTS: "-Xms1024m -Xmx1024m"
+   volumes:
+       - es-databackup:/backup:rw
+   links:
+       - "es-indices-master:es-master"
+
+volumes:
+   es-databackup:
