@@ -1,0 +1,14 @@
+version: '2'
+services:
+  isso:
+    build: ./
+    ports:
+      - "8080:8080"
+    volumes:
+      - isso-conf:/config
+      - isso-data:/db
+    restart: always
+
+volumes:
+  isso-conf:
+  isso-data:
