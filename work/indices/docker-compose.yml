@@ -4,7 +4,6 @@ services:
  es-indices-master:
    container_name: es-indices-master
    build: ./elasticsearch2
-   image: registry-internal.cn-hangzhou.aliyuncs.com/nakedgroup/elasticsearch-indices:1
    entrypoint:
        - /docker-entrypoint.sh
    command:
