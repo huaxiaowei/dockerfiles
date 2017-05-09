@@ -10,7 +10,7 @@ services:
         delay: 10s
       restart_policy:
         condition: on-failure
-#
+
   ut:
     image: registry.nakedhub.cn/nh/backend-ut:latest
     environment:
