@@ -10,7 +10,7 @@ services:
         delay: 10s
       restart_policy:
         condition: on-failure
-
+#
   ut:
     image: registry.nakedhub.cn/nh/backend-ut:latest
     environment:
@@ -21,6 +21,8 @@ services:
         -Djava.security.egd=file:/dev/urandom
     depends_on:
       - redis
+    volumes:
+      - nfsvolume:/nfs
     command:
       - 'catalina.sh'
       - 'run'
@@ -42,3 +44,11 @@ services:
       interval: 5s
       timeout: 30s
       retries: 3
+
+volumes:
+  nfsvolume:
+    driver: local
+    driver_opts:
+      type: 'nfs'
+      o: 'addr=172.16.1.12'
+      device: ':/storage4nfs'
