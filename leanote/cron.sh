@@ -9,7 +9,7 @@ if [ -n "$Online" ]; then
     cd ~/assets
     docker exec $CName mkdir /exports
     docker exec $CName mongodump -d leanote -o /exports
-    docker cp $CName:/exports/leanote ~/assets/leanote
+    docker cp $CName:/exports/leanote ~/assets/
     docker exec $CName rm -rf /exports
     git add .
     git commit -m "sync"
