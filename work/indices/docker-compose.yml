@@ -17,7 +17,8 @@ services:
    volumes:
        - es-databackup:/backup:rw
    ports:
-       - "9201:9200"
+       - "9200:9200"
+       - "9300:9300"
 
  es-indices-data1:
    container_name: es-indices-data1
