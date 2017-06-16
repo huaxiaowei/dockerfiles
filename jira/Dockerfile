@@ -1,0 +1,4 @@
+FROM cptactionhank/atlassian-jira:latest
+
+# JIRA 7.3 Crack jar file
+ADD ./cracked/atlassian-extras-3.2.jar /opt/atlassian/jira/atlassian-jira/WEB-INF/lib
