@@ -16,6 +16,7 @@ services:
        ES_JAVA_OPTS: "-Xms1024m -Xmx1024m"
    volumes:
        - es-databackup:/backup:rw
+       - es-synonym:/usr/share/elasticsearch/config/synonym:rw
    ports:
        - "9200:9200"
        - "9300:9300"
@@ -36,6 +37,7 @@ services:
        ES_JAVA_OPTS: "-Xms1024m -Xmx1024m"
    volumes:
        - es-databackup:/backup:rw
+       - es-synonym:/usr/share/elasticsearch/config/synonym:rw
    links:
        - "es-indices-master:es-master"
 
@@ -55,8 +57,10 @@ services:
        ES_JAVA_OPTS: "-Xms1024m -Xmx1024m"
    volumes:
        - es-databackup:/backup:rw
+       - es-synonym:/usr/share/elasticsearch/config/synonym:rw
    links:
        - "es-indices-master:es-master"
 
 volumes:
    es-databackup:
+   es-synonym:
