@@ -1,6 +1,17 @@
 version: '3'
 
 services:
+  nginx:
+    build: ./nginx
+    ports:
+      - '80:8080'
+    networks:
+      nhos:
+        aliases:
+          - 'nginx'
+
+########################################## NHOS ##########################################################
+
   nhadmin-ut:
     image: registry.cn-hangzhou.aliyuncs.com/nh/admin-ut:86
     ports:
@@ -15,6 +26,10 @@ services:
       interval: 5s
       timeout: 30s
       retries: 3
+    networks:
+      nhos:
+        aliases:
+          - 'nhadmin-ut'
   nhadmin-it:
     image: registry.cn-hangzhou.aliyuncs.com/nh/admin-ut:86
     ports:
@@ -29,6 +44,10 @@ services:
       interval: 5s
       timeout: 30s
       retries: 3
+    networks:
+      nhos:
+        aliases:
+          - 'nhadmin-it'
   nhadmin-uat:
     image: registry.cn-hangzhou.aliyuncs.com/nh/admin-ut:86
     ports:
@@ -43,6 +62,10 @@ services:
       interval: 5s
       timeout: 30s
       retries: 3
+    networks:
+      nhos:
+        aliases:
+          - 'nhadmin-uat'
   nhadmin-st:
     image: registry.cn-hangzhou.aliyuncs.com/nh/admin-ut:86
     ports:
@@ -57,8 +80,12 @@ services:
       interval: 5s
       timeout: 30s
       retries: 3
+    networks:
+      nhos:
+        aliases:
+          - 'nhadmin-st'
 
-####################################################################################################
+########################################## Website ##########################################################
 
   nhwebisite-ut:
     image: registry.cn-hangzhou.aliyuncs.com/nh/admin-ut:86
@@ -74,6 +101,10 @@ services:
       interval: 5s
       timeout: 30s
       retries: 3
+    networks:
+      nhos:
+        aliases:
+          - 'nhwebisite-ut'
   nhwebisite-it:
     image: registry.cn-hangzhou.aliyuncs.com/nh/admin-ut:86
     ports:
@@ -88,6 +119,10 @@ services:
       interval: 5s
       timeout: 30s
       retries: 3
+    networks:
+      nhos:
+        aliases:
+          - 'nhwebisite-it'
   nhwebisite-uat:
     image: registry.cn-hangzhou.aliyuncs.com/nh/admin-ut:86
     ports:
@@ -102,7 +137,11 @@ services:
       interval: 5s
       timeout: 30s
       retries: 3
-  nhwebisite-ut:
+    networks:
+      nhos:
+        aliases:
+          - 'nhwebisite-uat'
+  nhwebisite-st:
     image: registry.cn-hangzhou.aliyuncs.com/nh/admin-ut:86
     ports:
       - '1108:8080'
@@ -116,3 +155,10 @@ services:
       interval: 5s
       timeout: 30s
       retries: 3
+    networks:
+      nhos:
+        aliases:
+          - 'nhwebisite-st'
+
+networks:
+  nhos:
