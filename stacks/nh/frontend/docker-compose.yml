@@ -1,0 +1,118 @@
+version: '3'
+
+services:
+  nhadmin-ut:
+    image: registry.cn-hangzhou.aliyuncs.com/nh/admin-ut:86
+    ports:
+      - '1101:8080'
+    logging:
+      driver: fluentd
+      options:
+        fluentd-address: '${FLUENTD_ADDRESS}'
+        tag: 'ut.nhadmin'
+    healthcheck:
+      test: ['CMD', 'curl', '-f', 'http://localhost:8080/']
+      interval: 5s
+      timeout: 30s
+      retries: 3
+  nhadmin-it:
+    image: registry.cn-hangzhou.aliyuncs.com/nh/admin-ut:86
+    ports:
+      - '1102:8080'
+    logging:
+      driver: fluentd
+      options:
+        fluentd-address: '${FLUENTD_ADDRESS}'
+        tag: 'it.nhadmin'
+    healthcheck:
+      test: ['CMD', 'curl', '-f', 'http://localhost:8080/']
+      interval: 5s
+      timeout: 30s
+      retries: 3
+  nhadmin-uat:
+    image: registry.cn-hangzhou.aliyuncs.com/nh/admin-ut:86
+    ports:
+      - '1103:8080'
+    logging:
+      driver: fluentd
+      options:
+        fluentd-address: '${FLUENTD_ADDRESS}'
+        tag: 'uat.nhadmin'
+    healthcheck:
+      test: ['CMD', 'curl', '-f', 'http://localhost:8080/']
+      interval: 5s
+      timeout: 30s
+      retries: 3
+  nhadmin-st:
+    image: registry.cn-hangzhou.aliyuncs.com/nh/admin-ut:86
+    ports:
+      - '1104:8080'
+    logging:
+      driver: fluentd
+      options:
+        fluentd-address: '${FLUENTD_ADDRESS}'
+        tag: 'st.nhadmin'
+    healthcheck:
+      test: ['CMD', 'curl', '-f', 'http://localhost:8080/']
+      interval: 5s
+      timeout: 30s
+      retries: 3
+
+####################################################################################################
+
+  nhwebisite-ut:
+    image: registry.cn-hangzhou.aliyuncs.com/nh/admin-ut:86
+    ports:
+      - '1105:8080'
+    logging:
+      driver: fluentd
+      options:
+        fluentd-address: '${FLUENTD_ADDRESS}'
+        tag: 'ut.nhwebsite'
+    healthcheck:
+      test: ['CMD', 'curl', '-f', 'http://localhost:8080/']
+      interval: 5s
+      timeout: 30s
+      retries: 3
+  nhwebisite-it:
+    image: registry.cn-hangzhou.aliyuncs.com/nh/admin-ut:86
+    ports:
+      - '1106:8080'
+    logging:
+      driver: fluentd
+      options:
+        fluentd-address: '${FLUENTD_ADDRESS}'
+        tag: 'it.nhwebsite'
+    healthcheck:
+      test: ['CMD', 'curl', '-f', 'http://localhost:8080/']
+      interval: 5s
+      timeout: 30s
+      retries: 3
+  nhwebisite-uat:
+    image: registry.cn-hangzhou.aliyuncs.com/nh/admin-ut:86
+    ports:
+      - '1107:8080'
+    logging:
+      driver: fluentd
+      options:
+        fluentd-address: '${FLUENTD_ADDRESS}'
+        tag: 'uat.nhwebsite'
+    healthcheck:
+      test: ['CMD', 'curl', '-f', 'http://localhost:8080/']
+      interval: 5s
+      timeout: 30s
+      retries: 3
+  nhwebisite-ut:
+    image: registry.cn-hangzhou.aliyuncs.com/nh/admin-ut:86
+    ports:
+      - '1108:8080'
+    logging:
+      driver: fluentd
+      options:
+        fluentd-address: '${FLUENTD_ADDRESS}'
+        tag: 'st.nhwebsite'
+    healthcheck:
+      test: ['CMD', 'curl', '-f', 'http://localhost:8080/']
+      interval: 5s
+      timeout: 30s
+      retries: 3
