@@ -13,7 +13,7 @@ services:
 ########################################## NHOS ##########################################################
 
   nhadmin-ut:
-    image: registry.cn-hangzhou.aliyuncs.com/nh/admin-ut:86
+    image: registry.cn-hangzhou.aliyuncs.com/nh/admin-ut
     ports:
       - '1101:8080'
     logging:
@@ -31,7 +31,7 @@ services:
         aliases:
           - 'nhadmin-ut'
   nhadmin-it:
-    image: registry.cn-hangzhou.aliyuncs.com/nh/admin-ut:86
+    image: registry.cn-hangzhou.aliyuncs.com/nh/admin-it
     ports:
       - '1102:8080'
     logging:
@@ -49,7 +49,7 @@ services:
         aliases:
           - 'nhadmin-it'
   nhadmin-uat:
-    image: registry.cn-hangzhou.aliyuncs.com/nh/admin-ut:86
+    image: registry.cn-hangzhou.aliyuncs.com/nh/admin-uat
     ports:
       - '1103:8080'
     logging:
@@ -67,7 +67,7 @@ services:
         aliases:
           - 'nhadmin-uat'
   nhadmin-st:
-    image: registry.cn-hangzhou.aliyuncs.com/nh/admin-ut:86
+    image: registry.cn-hangzhou.aliyuncs.com/nh/admin-st
     ports:
       - '1104:8080'
     logging:
@@ -88,7 +88,7 @@ services:
 ########################################## Website ##########################################################
 
   nhwebisite-ut:
-    image: registry.cn-hangzhou.aliyuncs.com/nh/admin-ut:86
+    image: registry.cn-hangzhou.aliyuncs.com/nh/website-ut
     ports:
       - '1105:8080'
     logging:
@@ -104,9 +104,9 @@ services:
     networks:
       nhos:
         aliases:
-          - 'nhwebisite-ut'
+          - 'nhwebsite-ut'
   nhwebisite-it:
-    image: registry.cn-hangzhou.aliyuncs.com/nh/admin-ut:86
+    image: registry.cn-hangzhou.aliyuncs.com/nh/website-it
     ports:
       - '1106:8080'
     logging:
@@ -122,9 +122,9 @@ services:
     networks:
       nhos:
         aliases:
-          - 'nhwebisite-it'
+          - 'nhwebsite-it'
   nhwebisite-uat:
-    image: registry.cn-hangzhou.aliyuncs.com/nh/admin-ut:86
+    image: registry.cn-hangzhou.aliyuncs.com/nh/website-uat
     ports:
       - '1107:8080'
     logging:
@@ -140,9 +140,9 @@ services:
     networks:
       nhos:
         aliases:
-          - 'nhwebisite-uat'
+          - 'nhwebsite-uat'
   nhwebisite-st:
-    image: registry.cn-hangzhou.aliyuncs.com/nh/admin-ut:86
+    image: registry.cn-hangzhou.aliyuncs.com/nh/website-st
     ports:
       - '1108:8080'
     logging:
@@ -158,7 +158,7 @@ services:
     networks:
       nhos:
         aliases:
-          - 'nhwebisite-st'
+          - 'nhwebsite-st'
 
 networks:
   nhos:
