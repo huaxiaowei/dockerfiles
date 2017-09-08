@@ -13,7 +13,7 @@ services:
 ########################################## NHOS ##########################################################
 
   nhadmin-ut:
-    image: registry.cn-hangzhou.aliyuncs.com/nh/admin-ut
+    image: registry.nakedhub.cn/nh/admin-ut
     ports:
       - '1101:8080'
     logging:
@@ -31,7 +31,7 @@ services:
         aliases:
           - 'nhadmin-ut'
   nhadmin-it:
-    image: registry.cn-hangzhou.aliyuncs.com/nh/admin-it
+    image: registry.nakedhub.cn/nh/admin-it
     ports:
       - '1102:8080'
     logging:
@@ -49,7 +49,7 @@ services:
         aliases:
           - 'nhadmin-it'
   nhadmin-uat:
-    image: registry.cn-hangzhou.aliyuncs.com/nh/admin-uat
+    image: registry.nakedhub.cn/nh/admin-uat
     ports:
       - '1103:8080'
     logging:
@@ -67,7 +67,7 @@ services:
         aliases:
           - 'nhadmin-uat'
   nhadmin-st:
-    image: registry.cn-hangzhou.aliyuncs.com/nh/admin-st
+    image: registry.nakedhub.cn/nh/admin-st
     ports:
       - '1104:8080'
     logging:
@@ -88,7 +88,7 @@ services:
 ########################################## Website ##########################################################
 
   nhwebisite-ut:
-    image: registry.cn-hangzhou.aliyuncs.com/nh/website-ut
+    image: registry.nakedhub.cn/nh/website-ut
     ports:
       - '1105:8080'
     logging:
@@ -106,7 +106,7 @@ services:
         aliases:
           - 'nhwebsite-ut'
   nhwebisite-it:
-    image: registry.cn-hangzhou.aliyuncs.com/nh/website-it
+    image: registry.nakedhub.cn/nh/website-it
     ports:
       - '1106:8080'
     logging:
@@ -124,7 +124,7 @@ services:
         aliases:
           - 'nhwebsite-it'
   nhwebisite-uat:
-    image: registry.cn-hangzhou.aliyuncs.com/nh/website-uat
+    image: registry.nakedhub.cn/nh/website-uat
     ports:
       - '1107:8080'
     logging:
@@ -142,7 +142,7 @@ services:
         aliases:
           - 'nhwebsite-uat'
   nhwebisite-st:
-    image: registry.cn-hangzhou.aliyuncs.com/nh/website-st
+    image: registry.nakedhub.cn/nh/website-st
     ports:
       - '1108:8080'
     logging:
