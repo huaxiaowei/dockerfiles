@@ -87,78 +87,78 @@ services:
 
 ########################################## Website ##########################################################
 
-  nhwebisite-ut:
-    image: registry.nakedhub.cn/nh/website-ut
-    ports:
-      - '1105:8080'
-    logging:
-      driver: fluentd
-      options:
-        fluentd-address: '${FLUENTD_ADDRESS}'
-        tag: 'ut.nhwebsite'
-    healthcheck:
-      test: ['CMD', 'curl', '-f', 'http://localhost:8080/']
-      interval: 5s
-      timeout: 30s
-      retries: 3
-    networks:
-      nhos:
-        aliases:
-          - 'nhwebsite-ut'
-  nhwebisite-it:
-    image: registry.nakedhub.cn/nh/website-it
-    ports:
-      - '1106:8080'
-    logging:
-      driver: fluentd
-      options:
-        fluentd-address: '${FLUENTD_ADDRESS}'
-        tag: 'it.nhwebsite'
-    healthcheck:
-      test: ['CMD', 'curl', '-f', 'http://localhost:8080/']
-      interval: 5s
-      timeout: 30s
-      retries: 3
-    networks:
-      nhos:
-        aliases:
-          - 'nhwebsite-it'
-  nhwebisite-uat:
-    image: registry.nakedhub.cn/nh/website-uat
-    ports:
-      - '1107:8080'
-    logging:
-      driver: fluentd
-      options:
-        fluentd-address: '${FLUENTD_ADDRESS}'
-        tag: 'uat.nhwebsite'
-    healthcheck:
-      test: ['CMD', 'curl', '-f', 'http://localhost:8080/']
-      interval: 5s
-      timeout: 30s
-      retries: 3
-    networks:
-      nhos:
-        aliases:
-          - 'nhwebsite-uat'
-  nhwebisite-st:
-    image: registry.nakedhub.cn/nh/website-st
-    ports:
-      - '1108:8080'
-    logging:
-      driver: fluentd
-      options:
-        fluentd-address: '${FLUENTD_ADDRESS}'
-        tag: 'st.nhwebsite'
-    healthcheck:
-      test: ['CMD', 'curl', '-f', 'http://localhost:8080/']
-      interval: 5s
-      timeout: 30s
-      retries: 3
-    networks:
-      nhos:
-        aliases:
-          - 'nhwebsite-st'
+#  nhwebisite-ut:
+#    image: registry.nakedhub.cn/nh/website-ut
+#    ports:
+#      - '1105:8080'
+#    logging:
+#      driver: fluentd
+#      options:
+#        fluentd-address: '${FLUENTD_ADDRESS}'
+#        tag: 'ut.nhwebsite'
+#    healthcheck:
+#      test: ['CMD', 'curl', '-f', 'http://localhost:8080/']
+#      interval: 5s
+#      timeout: 30s
+#      retries: 3
+#    networks:
+#      nhos:
+#        aliases:
+#          - 'nhwebsite-ut'
+#  nhwebisite-it:
+#    image: registry.nakedhub.cn/nh/website-it
+#    ports:
+#      - '1106:8080'
+#    logging:
+#      driver: fluentd
+#      options:
+#        fluentd-address: '${FLUENTD_ADDRESS}'
+#        tag: 'it.nhwebsite'
+#    healthcheck:
+#      test: ['CMD', 'curl', '-f', 'http://localhost:8080/']
+#      interval: 5s
+#      timeout: 30s
+#      retries: 3
+#    networks:
+#      nhos:
+#        aliases:
+#          - 'nhwebsite-it'
+#  nhwebisite-uat:
+#    image: registry.nakedhub.cn/nh/website-uat
+#    ports:
+#      - '1107:8080'
+#    logging:
+#      driver: fluentd
+#      options:
+#        fluentd-address: '${FLUENTD_ADDRESS}'
+#        tag: 'uat.nhwebsite'
+#    healthcheck:
+#      test: ['CMD', 'curl', '-f', 'http://localhost:8080/']
+#      interval: 5s
+#      timeout: 30s
+#      retries: 3
+#    networks:
+#      nhos:
+#        aliases:
+#          - 'nhwebsite-uat'
+#  nhwebisite-st:
+#    image: registry.nakedhub.cn/nh/website-st
+#    ports:
+#      - '1108:8080'
+#    logging:
+#      driver: fluentd
+#      options:
+#        fluentd-address: '${FLUENTD_ADDRESS}'
+#        tag: 'st.nhwebsite'
+#    healthcheck:
+#      test: ['CMD', 'curl', '-f', 'http://localhost:8080/']
+#      interval: 5s
+#      timeout: 30s
+#      retries: 3
+#    networks:
+#      nhos:
+#        aliases:
+#          - 'nhwebsite-st'
 
 networks:
   nhos:
