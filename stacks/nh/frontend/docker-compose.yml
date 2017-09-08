@@ -12,14 +12,11 @@ services:
         fluentd-address: '${FLUENTD_ADDRESS}'
         tag: 'ut.nhadmin'
     healthcheck:
-      test: ['CMD', 'curl', '-f', 'http://localhost:8080/']
+      test: ['CMD', 'curl', '-f', 'http://localhost:8080/en/login']
       interval: 5s
       timeout: 30s
       retries: 3
-    networks:
-      nhos:
-        aliases:
-          - 'nhadmin-ut'
+
   nhadmin-it:
     image: registry.nakedhub.cn/nh/admin-it
     ports:
@@ -30,14 +27,11 @@ services:
         fluentd-address: '${FLUENTD_ADDRESS}'
         tag: 'it.nhadmin'
     healthcheck:
-      test: ['CMD', 'curl', '-f', 'http://localhost:8080/']
+      test: ['CMD', 'curl', '-f', 'http://localhost:8080/en/login']
       interval: 5s
       timeout: 30s
       retries: 3
-    networks:
-      nhos:
-        aliases:
-          - 'nhadmin-it'
+
   nhadmin-uat:
     image: registry.nakedhub.cn/nh/admin-uat
     ports:
@@ -48,14 +42,11 @@ services:
         fluentd-address: '${FLUENTD_ADDRESS}'
         tag: 'uat.nhadmin'
     healthcheck:
-      test: ['CMD', 'curl', '-f', 'http://localhost:8080/']
+      test: ['CMD', 'curl', '-f', 'http://localhost:8080/en/login']
       interval: 5s
       timeout: 30s
       retries: 3
-    networks:
-      nhos:
-        aliases:
-          - 'nhadmin-uat'
+
   nhadmin-st:
     image: registry.nakedhub.cn/nh/admin-st
     ports:
@@ -66,14 +57,10 @@ services:
         fluentd-address: '${FLUENTD_ADDRESS}'
         tag: 'st.nhadmin'
     healthcheck:
-      test: ['CMD', 'curl', '-f', 'http://localhost:8080/']
+      test: ['CMD', 'curl', '-f', 'http://localhost:8080/en/login']
       interval: 5s
       timeout: 30s
       retries: 3
-    networks:
-      nhos:
-        aliases:
-          - 'nhadmin-st'
 
 ########################################## Website ##########################################################
 
