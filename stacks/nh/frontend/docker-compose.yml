@@ -1,17 +1,7 @@
 version: '3'
 
 services:
-  nginx:
-    build: ./nginx
-    ports:
-      - '80:8080'
-    networks:
-      nhos:
-        aliases:
-          - 'nginx'
-
 ########################################## NHOS ##########################################################
-
   nhadmin-ut:
     image: registry.nakedhub.cn/nh/admin-ut
     ports:
