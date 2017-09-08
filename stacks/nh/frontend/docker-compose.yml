@@ -6,11 +6,11 @@ services:
     image: registry.nakedhub.cn/nh/admin-ut
     ports:
       - '1101:8080'
-#    logging:
-#      driver: fluentd
-#      options:
-#        fluentd-address: '${FLUENTD_ADDRESS}'
-#        tag: 'ut.nhadmin'
+    logging:
+      driver: fluentd
+      options:
+        fluentd-address: '${FLUENTD_ADDRESS}'
+        tag: 'ut.nhadmin'
     healthcheck:
       test: ['CMD', 'curl', '-f', 'http://localhost:8080/en/login']
       interval: 30s
@@ -21,11 +21,11 @@ services:
     image: registry.nakedhub.cn/nh/admin-it
     ports:
       - '1102:8080'
-#    logging:
-#      driver: fluentd
-#      options:
-#        fluentd-address: '${FLUENTD_ADDRESS}'
-#        tag: 'it.nhadmin'
+    logging:
+      driver: fluentd
+      options:
+        fluentd-address: '${FLUENTD_ADDRESS}'
+        tag: 'it.nhadmin'
     healthcheck:
       test: ['CMD', 'curl', '-f', 'http://localhost:8080/en/login']
       interval: 30s
@@ -36,11 +36,11 @@ services:
     image: registry.nakedhub.cn/nh/admin-uat
     ports:
       - '1103:8080'
-#    logging:
-#      driver: fluentd
-#      options:
-#        fluentd-address: '${FLUENTD_ADDRESS}'
-#        tag: 'uat.nhadmin'
+    logging:
+      driver: fluentd
+      options:
+        fluentd-address: '${FLUENTD_ADDRESS}'
+        tag: 'uat.nhadmin'
     healthcheck:
       test: ['CMD', 'curl', '-f', 'http://localhost:8080/en/login']
       interval: 30s
@@ -51,11 +51,11 @@ services:
     image: registry.nakedhub.cn/nh/admin-st
     ports:
       - '1104:8080'
-#    logging:
-#      driver: fluentd
-#      options:
-#        fluentd-address: '${FLUENTD_ADDRESS}'
-#        tag: 'st.nhadmin'
+    logging:
+      driver: fluentd
+      options:
+        fluentd-address: '${FLUENTD_ADDRESS}'
+        tag: 'st.nhadmin'
     healthcheck:
       test: ['CMD', 'curl', '-f', 'http://localhost:8080/en/login']
       interval: 30s
