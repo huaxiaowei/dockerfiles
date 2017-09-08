@@ -13,7 +13,7 @@ services:
 #        tag: 'ut.nhadmin'
     healthcheck:
       test: ['CMD', 'curl', '-f', 'http://localhost:8080/en/login']
-      interval: 5s
+      interval: 30s
       timeout: 30s
       retries: 3
 
@@ -28,7 +28,7 @@ services:
 #        tag: 'it.nhadmin'
     healthcheck:
       test: ['CMD', 'curl', '-f', 'http://localhost:8080/en/login']
-      interval: 5s
+      interval: 30s
       timeout: 30s
       retries: 3
 
@@ -43,7 +43,7 @@ services:
 #        tag: 'uat.nhadmin'
     healthcheck:
       test: ['CMD', 'curl', '-f', 'http://localhost:8080/en/login']
-      interval: 5s
+      interval: 30s
       timeout: 30s
       retries: 3
 
@@ -58,7 +58,7 @@ services:
 #        tag: 'st.nhadmin'
     healthcheck:
       test: ['CMD', 'curl', '-f', 'http://localhost:8080/en/login']
-      interval: 5s
+      interval: 30s
       timeout: 30s
       retries: 3
 
