@@ -14,7 +14,7 @@ services:
     healthcheck:
       test: ['CMD', 'curl', '-f', 'http://localhost:8080/en/login']
       interval: 30s
-      timeout: 30s
+      timeout: 60s
       retries: 3
 
   nhadmin-it:
@@ -29,7 +29,7 @@ services:
     healthcheck:
       test: ['CMD', 'curl', '-f', 'http://localhost:8080/en/login']
       interval: 30s
-      timeout: 30s
+      timeout: 60s
       retries: 3
 
   nhadmin-uat:
@@ -44,7 +44,7 @@ services:
     healthcheck:
       test: ['CMD', 'curl', '-f', 'http://localhost:8080/en/login']
       interval: 30s
-      timeout: 30s
+      timeout: 60s
       retries: 3
 
   nhadmin-st:
@@ -59,7 +59,7 @@ services:
     healthcheck:
       test: ['CMD', 'curl', '-f', 'http://localhost:8080/en/login']
       interval: 30s
-      timeout: 30s
+      timeout: 60s
       retries: 3
 ########################################## Website ##########################################################
   nhwebsite-ut:
@@ -74,7 +74,7 @@ services:
     healthcheck:
       test: ['CMD', 'curl', '-f', 'http://localhost:8080/']
       interval: 30s
-      timeout: 30s
+      timeout: 60s
       retries: 3
   nhwebsite-it:
     image: registry.nakedhub.cn/nh/website-it
@@ -88,7 +88,7 @@ services:
     healthcheck:
       test: ['CMD', 'curl', '-f', 'http://localhost:8080/']
       interval: 30s
-      timeout: 30s
+      timeout: 60s
       retries: 3
   nhwebsite-uat:
     image: registry.nakedhub.cn/nh/website-uat
@@ -102,7 +102,7 @@ services:
     healthcheck:
       test: ['CMD', 'curl', '-f', 'http://localhost:8080/']
       interval: 30s
-      timeout: 30s
+      timeout: 60s
       retries: 3
   nhwebsite-st:
     image: registry.nakedhub.cn/nh/website-st
@@ -116,5 +116,5 @@ services:
     healthcheck:
       test: ['CMD', 'curl', '-f', 'http://localhost:8080/']
       interval: 30s
-      timeout: 30s
+      timeout: 60s
       retries: 3
