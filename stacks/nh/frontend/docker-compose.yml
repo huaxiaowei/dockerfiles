@@ -62,7 +62,7 @@ services:
       timeout: 30s
       retries: 3
 ########################################## Website ##########################################################
-  nhwebisite-ut:
+  nhwebsite-ut:
     image: registry.nakedhub.cn/nh/website-ut
     ports:
       - '1105:8080'
@@ -76,7 +76,7 @@ services:
       interval: 30s
       timeout: 30s
       retries: 3
-  nhwebisite-it:
+  nhwebsite-it:
     image: registry.nakedhub.cn/nh/website-it
     ports:
       - '1106:8080'
@@ -90,7 +90,7 @@ services:
       interval: 30s
       timeout: 30s
       retries: 3
-  nhwebisite-uat:
+  nhwebsite-uat:
     image: registry.nakedhub.cn/nh/website-uat
     ports:
       - '1107:8080'
@@ -104,7 +104,7 @@ services:
       interval: 30s
       timeout: 30s
       retries: 3
-  nhwebisite-st:
+  nhwebsite-st:
     image: registry.nakedhub.cn/nh/website-st
     ports:
       - '1108:8080'
