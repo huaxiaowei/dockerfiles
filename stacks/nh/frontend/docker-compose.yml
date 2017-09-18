@@ -65,7 +65,7 @@ services:
   nhadmin-dm:
     image: registry.nakedhub.cn/nh/admin-dm
     ports:
-      - '1105:8080'
+      - '1109:8080'
     logging:
       driver: fluentd
       options:
