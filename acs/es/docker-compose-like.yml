@@ -1,5 +1,4 @@
 es-indices-master:
-    container_name: es-indices-master
     image: 'registry.cn-hangzhou.aliyuncs.com/nakedgroup/elasticsearch-indices:1'
     entrypoint:
         - /docker-entrypoint.sh
