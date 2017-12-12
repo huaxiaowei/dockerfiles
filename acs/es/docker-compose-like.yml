@@ -13,7 +13,7 @@ es-indices-master:
         ES_JAVA_OPTS: '-Xms1024m -Xmx1024m'
     labels:
         aliyun.routing.port_9200: elasticsearch2
-es-indices-data1:
+es-indices-data:
     image: 'registry.cn-hangzhou.aliyuncs.com/nakedgroup/elasticsearch-indices:1'
     entrypoint:
         - /docker-entrypoint.sh
@@ -30,20 +30,4 @@ es-indices-data1:
         - 'es-indices-master:es-master'
     labels:
         aliyun.depends: es-indices-master
-es-indices-data2:
-    image: 'registry.cn-hangzhou.aliyuncs.com/nakedgroup/elasticsearch-indices:1'
-    entrypoint:
-        - /docker-entrypoint.sh
-    command:
-        - elasticsearch
-        - -Des.cluster.name=escluster
-        - -Des.node.ingest=false
-        - -Des.node.master=false
-        - -Des.network.host=_eth0_
-        - -Des.discovery.zen.ping.unicast.hosts=es-master
-    environment:
-        ES_JAVA_OPTS: "-Xms1024m -Xmx1024m"
-    links:
-        - 'es-indices-master:es-master'
-    labels:
-        aliyun.depends: es-indices-master
+        aliyun.scale: '2'
