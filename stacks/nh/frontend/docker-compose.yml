@@ -50,7 +50,7 @@ services:
   nhadmin-vn:
     image: registry.nakedhub.cn/nh/admin-vn
     ports:
-      - '1205:8080'
+      - '1305:8080'
     logging:
       driver: fluentd
       options:
