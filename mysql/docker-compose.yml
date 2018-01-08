@@ -1,0 +1,17 @@
+version: '2'
+
+services:
+  mysql:
+    image: mysql:5.6
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    command:
+#      - "--innodb_buffer_pool_size=1600M"
+#      - "--max_allowed_packet=33554432"
+#      - "--sql_mode=NO_ENGINE_SUBSTITUTION"
+#      - "--group_concat_max_len=102400"
+#      - "--lower_case_table_names=1"
+#      - "--character_set_server=utf8mb4"
+      - "--log_bin=mysql-bin"
+      - "--binlog_format=ROW"
+      - "--server_id=1"
