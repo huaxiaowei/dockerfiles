@@ -1,0 +1,77 @@
+nhbackend-rel:
+    image: registry-vpc.cn-shanghai.aliyuncs.com/backend-rel:latest
+    links:
+        - redis3:redis3
+        - es-indices-master:es-master
+    labels:
+        aliyun.depends: redis3,es-indices-master,es-indices-data
+        aliyun.scale: '2'
+        aliyun.routing.port_8080: domain1;domain2
+        aliyun.probe.url: http://container:8080/nakedhub/
+        aliyun.probe.timeout_seconds: '60'
+        aliyun.probe.initial_delay_seconds: '3'
+        aliyun.rolling_updates: 'true'
+    logging:
+        driver: fluentd
+        options:
+            fluentd-address: '1.1.1.1:24223'
+            tag: 'rel.backend'
+    volumes:
+        - 'acs-shared:/nfs:rw'
+    environment:
+        JAVA_OPTS: '$JAVA_OPTS -server -Xms2048m -Xmx2048m -Dspring.profiles.active=tomcat,release -Djava.security.egd=file:/dev/urandom -Dhibernate.search.default.elasticsearch.host=http://es-master:9200/ -Dglobal.redis.hostname=redis3 -Dglobal.redis.password= -Dglobal.database.url=jdbc:mysql://host:3306/dbname -Dglobal.database.username=xxx -Dglobal.database.password=xxx'
+    memswap_reservation: 0
+    kernel_memory: 0
+    mem_limit: 0
+    memswap_limit: 0
+    shm_size: 0
+ngscheduler-rel:
+    image: registry-vpc.cn-shanghai.aliyuncs.com/scheduler-rel:latest
+    labels:
+        aliyun.depends: nhbackend-rel
+        aliyun.scale: '1'
+    logging:
+        driver: fluentd
+        options:
+            fluentd-address: '1.1.1.1:24223'
+    environment:
+        spring.profiles.active: 'rel'
+redis3:
+    image: redis:3.2.10
+    memswap_reservation: 0
+    kernel_memory: 0
+    mem_limit: 0
+    memswap_limit: 0
+    shm_size: 0
+es-indices-master:
+    image: registry-vpc.cn-shanghai.aliyuncs.com/elasticsearch-indices:1
+    entrypoint:
+        - /docker-entrypoint.sh
+    command:
+        - elasticsearch
+        - -Des.cluster.name=escluster
+        - -Des.node.master=true
+        - -Des.node.data=false
+        - -Des.network.host=_eth0_
+    environment:
+        ES_JAVA_OPTS: "-Xms1024m -Xmx1024m"
+    labels:
+        aliyun.routing.port_9200: elasticsearch2
+es-indices-data:
+    image: registry-vpc.cn-shanghai.aliyuncs.com/elasticsearch-indices:1
+    entrypoint:
+        - /docker-entrypoint.sh
+    command:
+        - elasticsearch
+        - -Des.cluster.name=escluster
+        - -Des.node.ingest=false
+        - -Des.node.master=false
+        - -Des.network.host=_eth0_
+        - -Des.discovery.zen.ping.unicast.hosts=es-master
+    environment:
+        ES_JAVA_OPTS: "-Xms1024m -Xmx1024m"
+    links:
+        - "es-indices-master:es-master"
+    labels:
+        aliyun.depends: es-indices-master
+        aliyun.scale: '2'
