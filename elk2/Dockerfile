@@ -9,10 +9,9 @@ RUN wget https://github.com/medcl/elasticsearch-analysis-ik/releases/download/v1
     && unzip elasticsearch-analysis-ik-1.10.2.zip \
     && rm elasticsearch-analysis-ik-1.10.2.zip && cd ../..
 
-RUN wget https://github.com/xpttxsok123/pinyin/blob/master/elasticsearch-analysis-pinyin-1.8.2.jar \
-    && wget https://github.com/xpttxsok123/pinyin/blob/master/nlp-lang-1.7.jar \
-    && wget https://github.com/xpttxsok123/pinyin/blob/master/plugin-descriptor.properties \
-    && mkdir ./plugins/pinyin/ \
-    && mv elasticsearch-analysis-pinyin-1.8.2.jar ./plugins/pinyin/ \
-    && mv nlp-lang-1.7.jar ./plugins/pinyin/ \
-    && mv plugin-descriptor.properties ./plugins/pinyin/
+RUN wget https://github.com/medcl/elasticsearch-analysis-pinyin/releases/download/v1.8.2/elasticsearch-analysis-pinyin-1.8.2.zip \
+     && mkdir ./plugins/pinyin/\
+     && mv elasticsearch-analysis-pinyin-1.8.2.zip ./plugins/pinyin/ \
+     && cd ./plugins/pinyin/ \
+     && unzip elasticsearch-analysis-pinyin-1.8.2.zip \
+     && rm elasticsearch-analysis-pinyin-1.8.2.zip && cd ../..

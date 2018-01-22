@@ -3,7 +3,7 @@ version: '2'
 services:
  es-indices-master:
    container_name: es-indices-master
-   image: registry.cn-shanghai.aliyuncs.com/ng/elasticsearch-indices:3
+   image: registry.cn-shanghai.aliyuncs.com/ng/elasticsearch-indices:4
    entrypoint:
        - /docker-entrypoint.sh
    command:
@@ -21,7 +21,7 @@ services:
 
  es-indices-data1:
    container_name: es-indices-data1
-   image: registry.cn-shanghai.aliyuncs.com/ng/elasticsearch-indices:3
+   image: registry.cn-shanghai.aliyuncs.com/ng/elasticsearch-indices:4
    entrypoint:
        - /docker-entrypoint.sh
    command:
@@ -40,7 +40,7 @@ services:
 
  es-indices-data2:
    container_name: es-indices-data2
-   image: registry.cn-shanghai.aliyuncs.com/ng/elasticsearch-indices:3
+   image: registry.cn-shanghai.aliyuncs.com/ng/elasticsearch-indices:4
    entrypoint:
        - /docker-entrypoint.sh
    command:
