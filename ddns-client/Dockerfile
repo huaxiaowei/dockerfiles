@@ -8,4 +8,4 @@ RUN chmod u+x /docker-entrypoint.sh
 
 WORKDIR /
 
-ENTRYPOINT ["docker-entrypoint.sh"]
+ENTRYPOINT ["bash","docker-entrypoint.sh"]
