@@ -8,4 +8,4 @@ COPY ./runner.python /runner.python
 
 WORKDIR /
 
-ENTRYPOINT ['python','/runner.python']
+ENTRYPOINT python runner.python
