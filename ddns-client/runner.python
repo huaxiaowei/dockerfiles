@@ -55,8 +55,6 @@ def main(argv):
     template = template.replace('__USERNAME__','%(username) s')
     template = template.replace('__PASSWORD__','%(password) s')
     template = template.replace('__MYIP__','%(myip) s')
-    print 'actual template string : ',template
-    print
 
     while(1==1):
         ip = getMyIp()
