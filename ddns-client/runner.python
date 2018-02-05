@@ -10,7 +10,12 @@ def help():
     sys.exit(2)
 
 def getMyIp():
-    r = requests.get('http://ifconfig.me/ip',headers = headers)
+    try:
+        r = requests.get('http://ifconfig.me/ip',timeout=10,headers=headers)
+    except requests.exceptions.RequestException:
+        print 'get ip address timeout'
+        return getMyIp()
+
     if r.status_code == requests.codes.ok:
         return r.text.replace('\n','')
     else:
@@ -64,10 +69,17 @@ def main(argv):
         url = template%{'hostname': hostname,'username': username, 'password':password,'myip':ip}
         print url
 
-        r = requests.get(url,headers = headers)
-        print
-        print r.text
+        try:
+            r = requests.get(url,timeout=10,headers=headers)
+            print '>> ',r.text
+            print
+        except requests.exceptions.RequestException:
+            print '>> ','update ip address timeout'
+            print
+            continue
 
+        print 'wait 300s to keep on'
+        print
         time.sleep(300)
 
 if __name__ == "__main__":

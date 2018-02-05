@@ -1,7 +1,7 @@
 FROM alpine:latest
 
-#RUN echo "http://mirrors.nju.edu.cn/alpine/v3.7/main" > /etc/apk/repositories \
-#    && echo "http://mirrors.nju.edu.cn/alpine/v3.7/community" >> /etc/apk/repositories
+RUN echo "http://mirrors.nju.edu.cn/alpine/v3.7/main" > /etc/apk/repositories \
+    && echo "http://mirrors.nju.edu.cn/alpine/v3.7/community" >> /etc/apk/repositories
 
 RUN apk update \
     && apk add bash python py-pip \
