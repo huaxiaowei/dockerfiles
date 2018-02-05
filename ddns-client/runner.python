@@ -65,6 +65,7 @@ def main(argv):
         print url
 
         r = requests.get(url,headers = headers)
+        print
         print r.text
 
         time.sleep(10)

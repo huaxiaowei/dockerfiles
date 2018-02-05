@@ -1,9 +1,11 @@
 FROM alpine:latest
 
-RUN apk update && apk add bash wget
+RUN apk update
+    && apk add bash python
+    && pip install requests
 
-COPY docker-entrypoint.sh /docker-entrypoint.sh
+COPY runner.python /runner.python
 
 WORKDIR /
 
-ENTRYPOINT docker-entrypoint.sh
+ENTRYPOINT ['python','runner.python']
