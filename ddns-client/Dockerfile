@@ -4,8 +4,8 @@ RUN apk update \
     && apk add bash python py-pip \
     && pip install requests
 
-COPY runner.python /runner.python
+COPY ./runner.python /runner.python
 
 WORKDIR /
 
-ENTRYPOINT ['python','runner.python']
+ENTRYPOINT ['python','/runner.python']
