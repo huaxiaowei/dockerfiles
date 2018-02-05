@@ -1,0 +1,75 @@
+import sys,getopt,requests,time
+
+headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'}
+
+def help():
+    print "--username"
+    print "--password"
+    print "--template"
+    print "-h"
+    sys.exit(2)
+
+def getMyIp():
+    r = requests.get('http://ifconfig.me/ip',headers = headers)
+    if r.status_code == requests.codes.ok:
+        return r.text.replace('\n','')
+    else:
+        print r.text
+        sys.exit(2)
+
+def main(argv):
+    try:
+        opts, args = getopt.getopt(argv,"h",["help","hostname=","username=","password=","template="])
+    except getopt.GetoptError:
+        print('Arguments parsing error')
+        sys.exit(2)
+
+    for opt, arg in opts:
+        if opt in ("-h","--help"):
+            help()
+        elif opt in ("","--hostname"):
+            hostname = arg
+        elif opt in ("","--username"):
+            username = arg
+        elif opt in ("","--password"):
+            password = arg
+        elif opt in ("","--template"):
+            template = arg
+
+    if 'hostname' not in locals():
+        print 'Hostname is required'
+        sys.exit(2)
+    if 'username' not in locals():
+        print 'Username is required'
+        sys.exit(2)
+    if 'password' not in locals():
+        print 'Password is required'
+        sys.exit(2)
+    if 'template' not in locals():
+        print 'Template is required'
+        sys.exit(2)
+
+    print 'template string: ',template
+    print
+    template = template.replace('__HOSTNAME__','%(hostname) s')
+    template = template.replace('__USERNAME__','%(username) s')
+    template = template.replace('__PASSWORD__','%(password) s')
+    template = template.replace('__MYIP__','%(myip) s')
+    print 'actual template string : ',template
+    print
+
+    while(1==1):
+        ip = getMyIp()
+        print 'public ip address is : ',ip
+        print
+
+        url = template%{'hostname': hostname,'username': username, 'password':password,'myip':ip}
+        print url
+
+        r = requests.get(url,headers = headers)
+        print r.text
+
+        time.sleep(10)
+
+if __name__ == "__main__":
+    main(sys.argv[1:])
