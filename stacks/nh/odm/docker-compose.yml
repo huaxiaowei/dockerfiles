@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  nhbackend-odm-dev:
+    image: registry.nakedhub.cn/nh/naked-odm
+    ports:
+      - '1206:8080'
+    logging:
+      driver: fluentd
+      options:
+        fluentd-address: '${FLUENTD_ADDRESS}'
+        tag: 'dev.odm.nhbackend'
+    command:
+      - "-Dspring.redis.host=redis3"
+      - "-Dspring.profiles.active=dev"
+      - "naked-odm.jar"
+  redis3:
+    image: redis3
