@@ -8,10 +8,12 @@ es-indices-master:
         - -Des.node.master=true
         - -Des.node.data=false
         - -Des.network.host=_eth0_
+        - -Des.discovery.zen.minimum_master_nodes=1
     environment:
         ES_JAVA_OPTS: '-Xms1024m -Xmx1024m'
     labels:
         aliyun.routing.port_9200: elasticsearch2
+        aliyun.scale: '2'
 es-indices-data:
     image: 'registry.cn-hangzhou.aliyuncs.com/nakedgroup/elasticsearch-indices:1'
     entrypoint:
@@ -22,11 +24,9 @@ es-indices-data:
         - -Des.node.ingest=false
         - -Des.node.master=false
         - -Des.network.host=_eth0_
-        - -Des.discovery.zen.ping.unicast.hosts=es-master
+        - -Des.discovery.zen.ping.unicast.hosts=nhbackend_es-indices-master_1,nhbackend_es-indices-master_2
     environment:
         ES_JAVA_OPTS: "-Xms1024m -Xmx1024m"
-    links:
-        - 'es-indices-master:es-master'
     labels:
         aliyun.depends: es-indices-master
         aliyun.scale: '2'
