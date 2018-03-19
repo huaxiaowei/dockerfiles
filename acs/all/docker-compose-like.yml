@@ -43,7 +43,7 @@ es-indices-master:
         - -Des.node.master=true
         - -Des.node.data=false
         - -Des.network.host=_eth0_
-        - -Des.discovery.zen.minimum_master_nodes=1
+        - -Des.discovery.zen.ping.unicast.hosts=nhbackend_es-indices-master_1,nhbackend_es-indices-master_2
     labels:
         aliyun.routing.port_9200: elasticsearch2
         aliyun.scale: '3'
