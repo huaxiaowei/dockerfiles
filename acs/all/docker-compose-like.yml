@@ -46,7 +46,7 @@ es-indices-master:
         - -Des.discovery.zen.ping.unicast.hosts=nhbackend_es-indices-master_1,nhbackend_es-indices-master_2
     labels:
         aliyun.routing.port_9200: elasticsearch2
-        aliyun.scale: '3'
+        aliyun.scale: '2'
 es-indices-data:
     image: registry-vpc.cn-shanghai.aliyuncs.com/elasticsearch-indices:1
     entrypoint:
