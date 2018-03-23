@@ -1,0 +1,110 @@
+es-indices-master1:
+    image: registry-vpc.cn-shanghai.aliyuncs.com/ng/elasticsearch-indices:4
+    entrypoint:
+        - /docker-entrypoint.sh
+    environment:
+        - affinity:service!=es-indices-master2
+    restart: always
+    command:
+        - elasticsearch
+        - -Des.cluster.name=escluster
+        - -Des.node.master=true
+        - -Des.node.data=false
+        - -Des.network.publish_host=$PHOST
+        - -Des.network.host=0.0.0.0
+        - -Des.transport.tcp.port=9310
+        - -Des.discovery.zen.ping.unicast.hosts=$RHOST
+    ports:
+        - 9310:9310
+    labels:
+        aliyun.routing.port_9200: sh-es-a
+
+es-indices-master2:
+    image: registry-vpc.cn-shanghai.aliyuncs.com/ng/elasticsearch-indices:4
+    entrypoint:
+        - /docker-entrypoint.sh
+    environment:
+        - affinity:service!=es-indices-master1
+    restart: always
+    command:
+        - elasticsearch
+        - -Des.cluster.name=escluster
+        - -Des.node.master=true
+        - -Des.node.data=false
+        - -Des.network.publish_host=$PHOST
+        - -Des.network.host=0.0.0.0
+        - -Des.transport.tcp.port=9320
+        - -Des.discovery.zen.ping.unicast.hosts=$RHOST
+    ports:
+        - 9320:9320
+    labels:
+        aliyun.routing.port_9200: sh-es-b
+
+es-indices-data1:
+    image: registry-vpc.cn-shanghai.aliyuncs.com/ng/elasticsearch-indices:4
+    entrypoint:
+        - /docker-entrypoint.sh
+    environment:
+        - affinity:service!=es-indices-data2
+        - affinity:service!=es-indices-data3
+    restart: always
+    command:
+        - elasticsearch
+        - -Des.cluster.name=escluster
+        - -Des.node.ingest=false
+        - -Des.node.master=false
+        - -Des.network.publish_host=$PHOST
+        - -Des.network.host=0.0.0.0
+        - -Des.transport.tcp.port=9330
+        - -Des.discovery.zen.ping.unicast.hosts=es-master-a:9310,es-master-b:9320
+    ports:
+        - 9330:9330
+    links:
+        - es-indices-master1:es-master-a
+        - es-indices-master2:es-master-b
+
+es-indices-data2:
+    image: registry-vpc.cn-shanghai.aliyuncs.com/ng/elasticsearch-indices:4
+    entrypoint:
+        - /docker-entrypoint.sh
+    environment:
+        - affinity:service!=es-indices-data1
+        - affinity:service!=es-indices-data3
+    restart: always
+    command:
+        - elasticsearch
+        - -Des.cluster.name=escluster
+        - -Des.node.ingest=false
+        - -Des.node.master=false
+        - -Des.network.publish_host=$PHOST
+        - -Des.network.host=0.0.0.0
+        - -Des.transport.tcp.port=9340
+        - -Des.discovery.zen.ping.unicast.hosts=es-master-a:9310,es-master-b:9320
+    ports:
+        - 9340:9340
+    links:
+        - es-indices-master1:es-master-a
+        - es-indices-master2:es-master-b
+
+es-indices-data3:
+    image: registry-vpc.cn-shanghai.aliyuncs.com/ng/elasticsearch-indices:4
+    entrypoint:
+        - /docker-entrypoint.sh
+    environment:
+        - affinity:service!=es-indices-data1
+        - affinity:service!=es-indices-data2
+    restart: always
+    command:
+        - elasticsearch
+        - -Des.cluster.name=escluster
+        - -Des.node.ingest=false
+        - -Des.node.master=false
+        - -Des.network.publish_host=$PHOST
+        - -Des.network.host=0.0.0.0
+        - -Des.transport.tcp.port=9350
+        - -Des.discovery.zen.ping.unicast.hosts=es-master-a:9310,es-master-b:9320
+    ports:
+        - 9350:9350
+    links:
+        - es-indices-master1:es-master-a
+        - es-indices-master2:es-master-b
